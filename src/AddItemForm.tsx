@@ -4,13 +4,12 @@ export type AddItemFormType = {
     addItem: (title: string) => void,
 }
 
-export function AddItemForm(props: AddItemFormType) {
-
+export const AddItemForm = React.memo( (props: AddItemFormType) => {
     const [newTaskTitle, setNewTaskTitle] = useState('');
     const [error, setError] = useState<string | null>(null);
 
     const onChangeInputTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setError(null);
+        if (error !== null) setError(null);
         setNewTaskTitle(e.currentTarget.value);
     }
 
@@ -51,4 +50,4 @@ export function AddItemForm(props: AddItemFormType) {
             </button>
         </div>
     )
-}
+})

@@ -70,11 +70,9 @@ export const taskReducer = (state: TaskStateType = initialState, action: ActionT
         case 'CHANGE-TASK-STATUS': {
             const stateCopy = {...state};
             const tasks = stateCopy[action.todolistId];
-            const checkedTask = tasks.find(item => item.id === action.taskId);
-
-            if(checkedTask) {
-                checkedTask.isDone = action.isDone;
-            }
+            stateCopy[action.todolistId] = tasks.map(t =>
+                t.id === action.taskId ?
+                    {...t, isDone: action.isDone } : t );
 
             return stateCopy;
         }
@@ -82,11 +80,9 @@ export const taskReducer = (state: TaskStateType = initialState, action: ActionT
         case 'CHANGE-TASK-TITLE': {
             const stateCopy = {...state};
             const tasks = stateCopy[action.todolistId];
-            const checkedTask = tasks.find(item => item.id === action.taskId);
-
-            if(checkedTask) {
-                checkedTask.title = action.title;
-            }
+            stateCopy[action.todolistId] = tasks.map(t =>
+                t.id === action.taskId ?
+                    {...t, title: action.title } : t );
 
             return stateCopy;
         }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {TasksType, TodoList} from "./TodoList";
 import './App.css';
 
@@ -40,16 +40,16 @@ function App() {
         {id: todollistId2, title: 'What to learn2', filter: 'active'}
     ]);
 
-    const addTask = (title: string, todolistId: string) => {
+    const addTask = useCallback( (title: string, todolistId: string) => {
         let newTaskObj = {id: v1(), title: title, isDone: false};
         let task = tasks[todolistId];
 
         let newTask = [newTaskObj, ...task];
         tasks[todolistId] = newTask;
         setTasks({...tasks});
-    }
+    }, []);
 
-    const removeTask = (id: string, todolistId: string) => {
+    const removeTask = useCallback( (id: string, todolistId: string) => {
         let task = tasks[todolistId];
         let filterTask = task.filter(item => {
             return item.id !== id
@@ -57,9 +57,9 @@ function App() {
 
         tasks[todolistId] = filterTask;
         setTasks({...tasks})
-    }
+    }, [])
 
-    const changeTaskStatus = (id: string, isDone: boolean, todolistId: string) => {
+    const changeTaskStatus = useCallback( (id: string, isDone: boolean, todolistId: string) => {
         let task = tasks[todolistId];
         let checkedTask = task.find(item => item.id === id);
 
@@ -68,7 +68,7 @@ function App() {
         }
 
         setTasks({...tasks})
-    }
+    }, []);
 
     const changeFilter = (value: FilterValueType, todolistId: string) => {
         let todolists = todolist.find(item => item.id === todolistId);
@@ -79,13 +79,13 @@ function App() {
         }
     }
 
-    const removeTodoList = (todolistId: string) => {
+    const removeTodoList = useCallback( (todolistId: string) => {
         let filteredTodoList = todolist.filter(item => item.id !== todolistId);
         setTodolist(filteredTodoList);
 
         delete tasks[todolistId];
         setTasks({...tasks});
-    }
+    }, []);
 
     function changeTodolistTitle(newTitle: string, todolistId: string) {
         let todolists = todolist.find(item => item.id === todolistId);
@@ -96,7 +96,7 @@ function App() {
         }
     }
 
-    function changeTaskTitle(taskId: string, newValue: string, todolistId: string) {
+    const changeTaskTitle = useCallback( (taskId: string, newValue: string, todolistId: string) => {
         let curTask = tasks[todolistId];
         let task = curTask.find(item => item.id === taskId);
 
@@ -104,14 +104,14 @@ function App() {
             task.title = newValue;
             setTasks({...tasks});
         }
-    }
+    }, []);
 
-    function addTodoList(title: string) {
+    const addTodoList = useCallback( (title: string) => {
         let todolistNew: TodolistType = {id: v1(), filter: "all", title: title};
 
         setTodolist([todolistNew, ...todolist]);
         setTasks({...tasks, [todolistNew.id]: []});
-    }
+    }, [])
 
     return (
       <div className="App">
@@ -135,13 +135,7 @@ function App() {
 
                         let tasksForToDoList = tasks[item.id];
 
-                        if(item.filter === 'completed') {
-                            tasksForToDoList = tasksForToDoList.filter(item => item.isDone === true);
-                        }
 
-                        if(item.filter === 'active') {
-                            tasksForToDoList = tasksForToDoList.filter(item => item.isDone === false);
-                        }
 
                         return <TodoList
                             key={item.id}
