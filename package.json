@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "https://nero671.github.io/CrossNoteReact/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -26,6 +27,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -64,6 +67,7 @@
     "@storybook/react-webpack5": "^8.0.8",
     "@storybook/test": "^8.0.8",
     "eslint-plugin-storybook": "^0.8.0",
+    "gh-pages": "^6.1.1",
     "prop-types": "^15.8.1",
     "storybook": "^8.0.8",
     "webpack": "^5.91.0"
