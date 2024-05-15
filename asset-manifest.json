@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/CrossNoteReact/static/css/main.35c9a1ce.css",
+    "main.js": "/CrossNoteReact/static/js/main.ab18d4bc.js",
+    "static/js/453.ed3810f9.chunk.js": "/CrossNoteReact/static/js/453.ed3810f9.chunk.js",
+    "static/media/bg.jpg": "/CrossNoteReact/static/media/bg.db5140c01c48ba1095cd.jpg",
+    "index.html": "/CrossNoteReact/index.html",
+    "main.35c9a1ce.css.map": "/CrossNoteReact/static/css/main.35c9a1ce.css.map",
+    "main.ab18d4bc.js.map": "/CrossNoteReact/static/js/main.ab18d4bc.js.map",
+    "453.ed3810f9.chunk.js.map": "/CrossNoteReact/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.35c9a1ce.css",
+    "static/js/main.ab18d4bc.js"
+  ]
+}
